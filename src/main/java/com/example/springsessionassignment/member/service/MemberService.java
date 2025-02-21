@@ -46,9 +46,6 @@ public class MemberService {
     }
 
     public void deleteById(Long memberId) {
-       if (!memberRepository.existsById(memberId)) {
-           throw new IllegalArgumentException("그런 사람 없다니까요!!");
-       }
        memberRepository.deleteById(memberId);
     }
 }

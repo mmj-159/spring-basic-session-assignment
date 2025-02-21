@@ -1,5 +1,6 @@
 package com.example.springsessionassignment.member.controller;
 
+import com.example.springsessionassignment.common.consts.Const;
 import com.example.springsessionassignment.member.dto.MemberSaveRequestDto;
 import com.example.springsessionassignment.member.dto.MemberSaveResponseDto;
 import com.example.springsessionassignment.member.dto.MemberResponseDto;
@@ -28,12 +29,14 @@ public class MemberController {
     }
 
     @PutMapping("/members/{memberId}")
-    public void update(@PathVariable Long memberId, @RequestBody MemberUpdateRequestDto memberUpdateRequestDto) {
+    public void update(
+            @SessionAttribute(name = Const.LOGIN_MEMBER) Long memberId,
+            @RequestBody MemberUpdateRequestDto memberUpdateRequestDto) {
         memberService.update(memberId, memberUpdateRequestDto);
     }
 
     @DeleteMapping("/members/{memberId}")
-    public void delete(@PathVariable Long memberId) {
+    public void delete(@SessionAttribute(name = Const.LOGIN_MEMBER) Long memberId) {
         memberService.deleteById(memberId);
     }
 }
