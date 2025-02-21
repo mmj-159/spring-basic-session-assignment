@@ -1,9 +1,7 @@
 package com.example.springsessionassignment.todo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.springsessionassignment.member.entity.Member;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,8 +13,13 @@ public class Todo {
     private Long id;
     private String content;
 
-    public Todo(String content) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id" , nullable = false)
+    private Member member;
+
+    public Todo(String content, Member member) {
         this.content = content;
+        this.member = member;
     }
 
     public void update(String content) {
