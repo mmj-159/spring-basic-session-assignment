@@ -21,6 +21,7 @@ public class AuthService {
         memberRepository.save(member);
     }
 
+    @Transactional(readOnly = true)
     public AuthLoginResponseDto login(AuthLoginRequestDto dto) {
         Member member = memberRepository.findByEmail(dto.getEmail()).orElseThrow(
                 () -> new IllegalArgumentException("그런 멤버 없음 실패~")

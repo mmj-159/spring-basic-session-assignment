@@ -24,7 +24,7 @@ public class LoginFilter implements Filter {
         // 화이트리스트에 포함되지 않은 경우, 로그인 여부 확인
         if (!isWhiteList(requestURI)) {
             HttpSession session = httpRequest.getSession(false);
-            if (session == null || session.getAttribute("LOGIN_USER") == null) {
+            if (session == null || session.getAttribute("LOGIN_MEMBER") == null) { //이거 위에서 LOGIN_MEMBER로 바꿔놓고 USER라고 되어있어서 문제 생긴거 기억났음
                 httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "로그인 해주세요.");
                 return;
             }

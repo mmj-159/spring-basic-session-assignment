@@ -45,6 +45,7 @@ public class MemberService {
         member.update(memberUpdateRequestDto.getEmail());
     }
 
+    @Transactional
     public void deleteById(Long memberId) {
        memberRepository.deleteById(memberId);
     }
